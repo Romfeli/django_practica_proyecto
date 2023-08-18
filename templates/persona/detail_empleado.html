@@ -1,10 +1,27 @@
-<h1>detalle de un empleado >>> {{ titulo }} <<<<<</h1>
-{{empleado}}
+{% extends 'base.html' %}
 
-<h2>todos los datos</h2>
-<p>{{ empleado.first_name }}</p>
-<p>{{ empleado.last_name }}</p>
-<p>{{ empleado.job }}</p>
-<p>{{ empleado.departamento }}</p>
-<p>{{ empleado.habilidades }}</p>
 
+
+
+
+{% block content %}
+{% include 'includes/header.html' %}
+
+
+<h1 style="font-size: 30px; text-align: center;">detalle de un empleado >>> {{ titulo }} <<<<<</h1>
+<div class="grid-x align-center-middle">
+<div class="cell callout secondary large-7 ">
+
+
+    {{empleado.full_name}}
+    <h2>todos los datos</h2>
+   
+    <p>{{ empleado.first_name }}</p>
+    <p>{{ empleado.last_name }}</p>
+    <p>{{ empleado.job }}</p>
+    <p>{{ empleado.departamento }}</p>
+    <p>{{ empleado.habilidades }}</p>
+  </div>
+</div>
+
+{% endblock content %}

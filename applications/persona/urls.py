@@ -5,8 +5,13 @@ from . import views
 app_name = 'persona_app'
 
 urlpatterns = [
+    #incio base de tempaltes
+        path('', views.InicioView.as_view(), name='inicio' ),
+
+
+
     #list views
-    path('listar-todo-empleado/', views.ListAllEmpleados.as_view()),
+    path('listar-todo-empleado/', views.ListAllEmpleados.as_view(), name="empleados_all"),
     path('listar-by-area/<short_name>', views.ListByArea.as_view()),
     path('listar-by-work/<job>', views.ListByWork.as_view()),
     path('listar-by-kword/', views.ListarEmpleadoPorPalabraClave.as_view()),
@@ -14,7 +19,7 @@ urlpatterns = [
 
 
     #details view
-    path('ver-empleado/<pk>', views.EmpleadoDetailView.as_view()),
+    path('ver-empleado/<pk>', views.EmpleadoDetailView.as_view(), name='empleado_detail'),
     #create view
     path('add_empleado/', views.EmpleadoCreateView.as_view()),
     #                                                  le etiqueda name nos da la oportunidad de referirnos a esta url mediante el resver_lazy

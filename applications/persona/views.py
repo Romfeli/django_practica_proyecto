@@ -9,12 +9,29 @@ from django.urls import reverse_lazy
 
 # Create your views here.
 
+
+class InicioView(TemplateView):
+    template_name = "inicio.html"
+
+
+
 #requiere de un template html
 class ListAllEmpleados(ListView):
     template_name = 'persona/list_all.html'
     paginate_by = 4
-    model = Empleado
-    
+    ordering = 'first_name'
+    context_object_name = 'empleados'
+
+    def get_queryset(self):
+                                        #vvvvv este parametro tiene que ser el mismo informado en el input
+        palabra_clave = self.request.GET.get("kword", '')
+        ##creamos una lista filtrada donde la palabra clave recogida por le metodo get tiene que ser igual al atributo en la base de datos
+        lista = Empleado.objects.filter(
+            first_name__icontains=palabra_clave
+        ) 
+
+        return lista
+
 
 
  #requiere de un template html
