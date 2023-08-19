@@ -4,8 +4,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, TemplateView, UpdateView, DeleteView
 from .models import Empleado
 from django.urls import reverse_lazy
-
-
+from .forms import EmpleadoForm
 
 # Create your views here.
 
@@ -133,13 +132,7 @@ class EmpleadoCreateView(CreateView):
     template_name = "persona/add.html"
 
     #fields = ('__all__') de esta forma jalamos todos los datos del modelo de la base de datos
-    fields = ['first_name',
-              'last_name',
-              'job',
-              'departamento',
-              'habilidades',
-              'avatar',
-              ]
+    form_class = EmpleadoForm
     #success_url = '/sucess' en ves de usar esto, importamos "from django.urls import reverse_lazy"
     success_url = reverse_lazy('persona_app:empleados_admin')
 
