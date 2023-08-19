@@ -12,16 +12,25 @@ urlpatterns = [
 
     #list views
     path('listar-todo-empleado/', views.ListAllEmpleados.as_view(), name="empleados_all"),
-    path('listar-by-area/<short_name>', views.ListByArea.as_view()),
+
+    path('listar-empleado-admin/', views.ListAllEmpleadosAdmin.as_view(), name="empleados_admin"),
+
+    
+    path('listar-by-area/<short_name>', views.ListByArea.as_view(),name='empleado_area'),
     path('listar-by-work/<job>', views.ListByWork.as_view()),
     path('listar-by-kword/', views.ListarEmpleadoPorPalabraClave.as_view()),
     path('listar-by-habilidades/', views.ListHabilidadesEmpleados.as_view()),
 
 
     #details view
+    
     path('ver-empleado/<pk>', views.EmpleadoDetailView.as_view(), name='empleado_detail'),
+    
     #create view
-    path('add_empleado/', views.EmpleadoCreateView.as_view()),
+    
+    path('add_empleado/', views.EmpleadoCreateView.as_view(), name="add_empleado"),
+
+
     #                                                  le etiqueda name nos da la oportunidad de referirnos a esta url mediante el resver_lazy
     path('sucess/', views.SusscessView.as_view(), name='correcto' ),
     #update view

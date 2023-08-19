@@ -33,16 +33,26 @@ class ListAllEmpleados(ListView):
         return lista
 
 
+#requiere de un template html
+class ListAllEmpleadosAdmin(ListView):
+    model = Empleado    
+    template_name = 'persona/lista_empleados.html'
+    paginate_by = 10
+    ordering = 'first_name'
+    context_object_name = 'empleados'
+
+
 
  #requiere de un template html
 class ListByArea(ListView):
  #lista empleados de area en especifico
     template_name = 'persona/list_by_area.html'
+    context_object_name ="empleados"
  
     # metodo para hacer listado de forma dinamica
     def get_queryset(self):
         #kwargs recupera del url lo que se estan mandando
-        area = self.kwargs['shortname']
+        area = self.kwargs['short_name']
         #creamos un filtro interactuando con el navegador
         lista = Empleado.objects.filter(
         departamento__short_name = area
@@ -128,9 +138,10 @@ class EmpleadoCreateView(CreateView):
               'job',
               'departamento',
               'habilidades',
+              'avatar',
               ]
     #success_url = '/sucess' en ves de usar esto, importamos "from django.urls import reverse_lazy"
-    success_url = reverse_lazy('persona_app:correcto')
+    success_url = reverse_lazy('persona_app:empleados_admin')
 
 
     ## es una forma de interseptar el from valid
@@ -157,7 +168,7 @@ class EmpleadoUpdateView(UpdateView):
               'departamento',
               'habilidades',
               ]
-    success_url = reverse_lazy('persona_app:correcto')
+    success_url = reverse_lazy('persona_app:empleados_admin')
 
 
     def post(self, request, *args, **kwargs):
@@ -181,7 +192,7 @@ class EmpleadoUpdateView(UpdateView):
 class EmpleadoDeleteView(DeleteView):
     model = Empleado
     template_name = "persona/delete.html"
-    success_url = reverse_lazy('persona_app:correcto')
+    success_url = reverse_lazy('persona_app:empleados_admin')
 
     def delete(self, request, *args, **kwargs):
         """

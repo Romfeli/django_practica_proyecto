@@ -1,7 +1,57 @@
-<h1>Agregamos un empleado </h1>
-<form method="POST"> {% csrf_token %}
-    {{ form.as_p }}
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    registrar empleado
+{% endblock title %}
 
 
-    <button type="submit">Agregar</button>   
-</form>
+
+{% block content %}
+
+{% include 'includes/header.html' %}
+<div class="grid-container">
+    <div class="grid-x">
+        <h1 class="cell">Registrar empleado</h1>
+        <div class="cell">
+            <form class="cell grid-container grid-margin-x" method="POST"> {% csrf_token %}
+                <div class="medium-6 cell">
+                    <label>Nombre:
+                            {{form.first_name}}
+                    </label>
+                </div> 
+                <div class="medium-6 cell">
+                    <label>Apellido:
+                            {{form.last_name}}
+                    </label>
+                </div> 
+                <div class="medium-6 cell">
+                    <label>Trabajo:
+                            {{form.job}}
+                    </label>
+                </div> 
+                <div class="medium-6 cell">
+                    <label>Departamento:
+                            {{form.departamento}}
+                    </label>
+                </div> 
+                <div class="medium-6 cell">
+                    <label>Habilidades:
+                            {{form.habilidades}}
+                    </label>
+                </div> 
+                <div class="medium-6 cell">
+                    <button class="button success" type="submit"></button>
+                </div> 
+            </form>
+    
+        </div>
+    </div>
+
+</div>
+  
+{% endblock content %}
+    
+
+

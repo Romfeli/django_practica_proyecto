@@ -40,7 +40,11 @@ class Empleado(models.Model):
     #aqui creamos la relacion entra la base de datos de los departamentos y los empleados
     #relacion de uno a muchos
     departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE)
-    #avatar = models.ImageField( upload_to='empleado',blank=True, null=True )
+
+    avatar = models.ImageField( upload_to='empleado',blank=True, null=True )
+    
+    
+    
     habilidades = models.ManyToManyField(Habilidades)
     hoja_vida = RichTextField()
     class Meta():
